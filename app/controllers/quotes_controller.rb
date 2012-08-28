@@ -1,8 +1,10 @@
 class QuotesController < ApplicationController
+    before_filter :authenticate_user!
   # GET /quotes
   # GET /quotes.json
   def index
     @quotes = Quote.all
+    @quote = Quote.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,7 +49,8 @@ class QuotesController < ApplicationController
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render json: @quote, status: :created, location: @quote }
       else
-        format.html { render action: "new" }
+          @quotes = Quote.all
+        format.html { render action: "index" }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
     end

@@ -1,29 +1,37 @@
-<h1>Listing quotes</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Cost per hour</th>
-    <th>Hours per day</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @quotes.each do |quote| %>
-  <tr>
-    <td><%= quote.name %></td>
-    <td><%= quote.description %></td>
-    <td><%= quote.cost_per_hour %></td>
-    <td><%= quote.hours_per_day %></td>
-    <td><%= link_to 'Show', quote %></td>
-    <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
-    <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<h1>Cotizaciones abiertas</h1>
+<%= link_to new_quote_path ,:class => "btn btn-success", :style => "float:right;", "href"=>"#myModal", "role"=>"button", "data-toggle"=>"modal" do %>
+    <i class="icon-plus icon-white"></i> Nueva cotización
 <% end %>
-</table>
-
 <br />
+<br />
+<table class="table table-hover table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Cost per hour</th>
+            <th>Hours per day</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
 
-<%= link_to 'New Quote', new_quote_path %>
+    <% @quotes.each do |quote| %>
+        <tr>
+            <td><%= quote.name %></td>
+            <td><%= quote.description %></td>
+            <td><%= quote.cost_per_hour %></td>
+            <td><%= quote.hours_per_day %></td>
+            <td><%= link_to 'Show', quote %></td>
+            <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+            <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    <% if @quotes.size == 0 %>
+        <tr>
+            <td colspan="7">No hay cotizaciones</td>
+        </tr>
+    <% end %>
+</table>
+<%= render 'modal' %>

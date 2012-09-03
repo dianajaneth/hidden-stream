@@ -4,4 +4,6 @@ class UseCase < ActiveRecord::Base
   validates :description, :presence => true, :length => { :maximum => 500 }
   validates :design_time,  :presence => true, :numericality => true
   validates :programming_time,  :presence => true, :numericality => true
+
+  belongs_to :quote
 end

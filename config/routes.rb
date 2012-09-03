@@ -1,11 +1,12 @@
 Cotiplus::Application.routes.draw do
-  resources :use_cases
-
   devise_for :users
 
   resources :users
+  #resources :use_cases
 
-  resources :quotes
+  resources :quotes do
+      resources :use_cases
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -4,4 +4,5 @@ class Quote < ActiveRecord::Base
   validates :description, :presence => true, :length => { :maximum => 500 }
   validates :cost_per_hour,  :presence => true, :numericality => true
   validates :hours_per_day,  :presence => true, :numericality => true
+  has_many :use_cases
 end

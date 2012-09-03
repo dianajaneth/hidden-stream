@@ -1,0 +1,3 @@
+table tbody tr.clickable td{
+    cursor: pointer;
+}

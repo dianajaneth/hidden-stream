@@ -1,11 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @quote.name %></h1>
 
-<p>
-  <b>Description:</b>
-  <%= @quote.description %>
-</p>
+<p class="lead"> <%= @quote.description %> </p>
 
 <p>
   <b>Cost per hour:</b>
@@ -17,7 +12,7 @@
   <%= @quote.hours_per_day %>
 </p>
 
-<table>
+<table class="table table-hover table-bordered table-condensed">
   <tr>
     <th>Name</th>
     <th>Description</th>
@@ -37,10 +32,12 @@
     <td><%= use_case.programming_time %></td>
     <td><%= use_case.is_extra %></td>
     <td><%= use_case.is_feature %></td>
+    <td><%= link_to 'Show', quote_use_case_path(use_case.quote.id,use_case.id) %></td>
+    <td><%= link_to 'Edit', edit_quote_use_case_path(use_case.quote.id,use_case.id) %></td>
+    <td><%= link_to 'Destroy', quote_use_case_path(use_case.quote.id,use_case.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
 
 
 <%= link_to 'Edit', edit_quote_path(@quote) %> |

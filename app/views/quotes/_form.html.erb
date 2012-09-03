@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= text_area(:quote, :description, :cols => 40, :rows => 10) %>
   </div>
   <div class="field">
     <%= f.label :cost_per_hour %><br />

@@ -2,7 +2,8 @@ class UseCasesController < ApplicationController
   # GET /use_cases
   # GET /use_cases.json
   def index
-    @use_cases = UseCase.all
+    @quote = Quote.find(params[:quote_id])
+    @use_cases = @quote.use_cases
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +26,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases/new.json
   def new
     @use_case = UseCase.new
+    @quote = Quote.find(params[:quote_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +42,12 @@ class UseCasesController < ApplicationController
   # POST /use_cases
   # POST /use_cases.json
   def create
-    @use_case = UseCase.new(params[:use_case])
+      @quote = Quote.find(params[:quote_id])
+    @use_case = @quote.use_cases.build(params[:use_case])
 
     respond_to do |format|
       if @use_case.save
-        format.html { redirect_to @use_case, notice: 'Use case was successfully created.' }
+        format.html { redirect_to @quote, notice: 'Use case was successfully created.' }
         format.json { render json: @use_case, status: :created, location: @use_case }
       else
         format.html { render action: "new" }
@@ -76,7 +79,7 @@ class UseCasesController < ApplicationController
     @use_case.destroy
 
     respond_to do |format|
-      format.html { redirect_to use_cases_url }
+      format.html { redirect_to quote_use_cases_url }
       format.json { head :no_content }
     end
   end

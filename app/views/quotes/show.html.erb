@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @quote.name %>
-</p>
+<h1><%= @quote.name %></h1>
 
 <p>
   <b>Description:</b>
@@ -19,6 +16,31 @@
   <b>Hours per day:</b>
   <%= @quote.hours_per_day %>
 </p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Design time</th>
+    <th>Programming time</th>
+    <th>Is extra</th>
+    <th>Is feature</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @quote.use_cases.each do |use_case| %>
+  <tr>
+    <td><%= use_case.name %></td>
+    <td><%= use_case.description %></td>
+    <td><%= use_case.design_time %></td>
+    <td><%= use_case.programming_time %></td>
+    <td><%= use_case.is_extra %></td>
+    <td><%= use_case.is_feature %></td>
+  </tr>
+<% end %>
+</table>
+
 
 
 <%= link_to 'Edit', edit_quote_path(@quote) %> |

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  design_time: 1.5
+  programming_time: 1.5
+  is_extra: 1
+  is_feature: 1
+
+two:
+  name: MyString
+  description: MyText
+  design_time: 1.5
+  programming_time: 1.5
+  is_extra: 1
+  is_feature: 1

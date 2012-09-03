@@ -1,4 +1,6 @@
 Cotiplus::Application.routes.draw do
+  resources :use_cases
+
   devise_for :users
 
   resources :users

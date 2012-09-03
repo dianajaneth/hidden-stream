@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @use_case.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @use_case.description %>
+</p>
+
+<p>
+  <b>Design time:</b>
+  <%= @use_case.design_time %>
+</p>
+
+<p>
+  <b>Programming time:</b>
+  <%= @use_case.programming_time %>
+</p>
+
+<p>
+  <b>Is extra:</b>
+  <%= @use_case.is_extra %>
+</p>
+
+<p>
+  <b>Is feature:</b>
+  <%= @use_case.is_feature %>
+</p>
+
+
+<%= link_to 'Edit', edit_use_case_path(@use_case) %> |
+<%= link_to 'Back', use_cases_path %>

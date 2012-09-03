@@ -6,11 +6,21 @@
   <b>Cost per hour:</b>
   <%= @quote.cost_per_hour %>
 </p>
-
 <p>
   <b>Hours per day:</b>
   <%= @quote.hours_per_day %>
 </p>
+<p>
+  <b>Total cost:</b>
+  <%= @quote.total_cost %>
+</p>
+<%= link_to new_quote_use_case_path(@quote.id) ,:class => "btn btn-success", :style => "float:right;", "href"=>"#newUseCaseModal", "role"=>"button", "data-toggle"=>"modal" do %>
+    <i class="icon-plus icon-white"></i> Nuevo Caso de Uso
+<% end %>
+<br />
+<br />
+
+<%= link_to 'New Use case', new_quote_use_case_path(@quote.id) %>
 
 <table class="table table-hover table-bordered table-condensed">
   <tr>

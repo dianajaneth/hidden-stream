@@ -53,17 +53,26 @@ class UseCasesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @use_case.errors, status: :unprocessable_entity }
       end
+
+      dt = @quote.use_cases.sum(:design_time);
+      pt = @quote.use_cases.sum(:programming_time);
+      dc = dt * @quote.cost_per_hour
+      pc = pt * @quote.cost_per_hour
+      tc = dc + pc
+      @quote.total_cost = tc
+      @quote.save
     end
   end
 
   # PUT /use_cases/1
   # PUT /use_cases/1.json
   def update
+      @quote = Quote.find(params[:quote_id])
     @use_case = UseCase.find(params[:id])
 
     respond_to do |format|
       if @use_case.update_attributes(params[:use_case])
-        format.html { redirect_to @use_case, notice: 'Use case was successfully updated.' }
+        format.html { redirect_to @quote, notice: 'Use case was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,12 +84,20 @@ class UseCasesController < ApplicationController
   # DELETE /use_cases/1
   # DELETE /use_cases/1.json
   def destroy
+      @quote = Quote.find(params[:quote_id])
     @use_case = UseCase.find(params[:id])
     @use_case.destroy
 
     respond_to do |format|
-      format.html { redirect_to quote_use_cases_url }
+      format.html { redirect_to @quote }
       format.json { head :no_content }
     end
+    dt = @quote.use_cases.sum(:design_time);
+      pt = @quote.use_cases.sum(:programming_time);
+      dc = dt * @quote.cost_per_hour
+      pc = pt * @quote.cost_per_hour
+      tc = dc + pc
+      @quote.total_cost = tc
+      @quote.save
   end
 end

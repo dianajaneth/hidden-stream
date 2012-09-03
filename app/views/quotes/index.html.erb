@@ -4,7 +4,7 @@
 <% end %>
 <br />
 <br />
-<table class="table table-hover table-bordered table-condensed">
+<table id="quotes_list" class="table table-hover table-bordered table-condensed">
     <thead>
         <tr>
             <th>Name</th>
@@ -19,7 +19,7 @@
 
     <% @quotes.each do |quote| %>
         <tr class="clickable" onclick="window.location = '<%=quote_path(quote)%>' ">
-            <td ><%= quote.name %></td>
+            <th ><%= quote.name %></th>
             <td><%= quote.description %></td>
             <td><%= quote.cost_per_hour %></td>
             <td><%= quote.hours_per_day %></td>
@@ -30,7 +30,7 @@
         </tr>
     <% end %>
     <% if @quotes.size == 0 %>
-        <tr>
+        <tr id="no_quotes">
             <td colspan="7">No hay cotizaciones</td>
         </tr>
     <% end %>

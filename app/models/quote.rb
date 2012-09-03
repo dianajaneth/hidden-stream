@@ -5,4 +5,12 @@ class Quote < ActiveRecord::Base
   validates :cost_per_hour,  :presence => true, :numericality => true
   validates :hours_per_day,  :presence => true, :numericality => true
   has_many :use_cases
+  
+  after_initialize :default_values
+
+  private
+    def default_values
+      self.total_cost ||= 0.0
+      self.status ||= "new"
+    end
 end

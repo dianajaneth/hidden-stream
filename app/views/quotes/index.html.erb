@@ -7,24 +7,24 @@
 <table id="quotes_list" class="table table-hover table-bordered table-condensed">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Cost per hour</th>
-            <th>Hours per day</th>
-            <th>Total cost</th>
-            <th>Status</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Costo por hora</th>
+            <th>Horas por día</th>
+            <th>Costo Total</th>
+            <th>Estatdo</th>
             <th colspan="3"></th>
         </tr>
     </thead>
 
     <% @quotes.each do |quote| %>
-        <tr>
+        <tr id="quote_<%=quote.id%>">
             <th ><a href="<%=quote_path(quote)%>"><%= quote.name %></a></th>
             <td><%= quote.description %></td>
             <td><%= quote.cost_per_hour %></td>
             <td><%= quote.hours_per_day %></td>
             <td><%= quote.total_cost %></td>
-            <td><%= quote.status %></td>
+            <td><span class="label label-<%= quote.status %>"><%= quote.status %></span></td>
             <td><%= link_to  edit_quote_path(quote) do %><i class="icon-edit"></i><% end %></td>
             <td class="alert-error"><%= link_to  quote, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="icon-trash"></i><% end %></td>
         </tr>

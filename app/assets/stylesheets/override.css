@@ -1,0 +1,26 @@
+body {
+    padding-top:60px;
+}
+table tbody tr.clickable td{
+    cursor: pointer;
+}
+.label-rechazada {
+  background-color: #b94a48;
+}
+
+.label-nueva {
+  background-color: #f89406;
+}
+
+.label-verde {
+  background-color: #468847;
+}
+
+.label-aceptada {
+  background-color: #3a87ad;
+}
+
+.label-inverse,
+.badge-inverse {
+  background-color: #333333;
+}

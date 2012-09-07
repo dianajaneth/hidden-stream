@@ -10,7 +10,8 @@ class Quote < ActiveRecord::Base
 
   private
     def default_values
-      self.total_cost ||= 0.0
-      self.status ||= "new"
+      self.total_cost ||= 0
+      self.total_hours ||= 0
+      self.status ||= "nueva"
     end
 end

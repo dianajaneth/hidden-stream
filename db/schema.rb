@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831193752) do
+ActiveRecord::Schema.define(:version => 20120831193753) do
 
   create_table "quotes", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120831193752) do
     t.text     "description"
     t.string   "status"
     t.float    "total_cost"
+    t.float    "total_hours"
   end
 
   create_table "use_cases", :force => true do |t|

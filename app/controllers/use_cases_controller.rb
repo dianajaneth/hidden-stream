@@ -59,6 +59,7 @@ class UseCasesController < ApplicationController
       dc = dt * @quote.cost_per_hour
       pc = pt * @quote.cost_per_hour
       tc = dc + pc
+      @quote.total_hours = dt + pt
       @quote.total_cost = tc
       @quote.save
     end

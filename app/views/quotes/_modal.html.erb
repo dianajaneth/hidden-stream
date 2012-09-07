@@ -1,7 +1,7 @@
 <div class="modal hide" id="newQuoteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Nueva cotización</h3>
+        <h3 id="myModalLabel">Cotización</h3>
     </div>
     <div class="modal-body">
         <%= form_for(@quote, remote: true, html: {"data-type" => :json, :class => "form-horizontal"}) do |f| %>

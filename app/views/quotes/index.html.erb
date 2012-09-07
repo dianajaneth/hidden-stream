@@ -18,8 +18,8 @@
     </thead>
 
     <% @quotes.each do |quote| %>
-        <tr class="clickable" onclick="window.location = '<%=quote_path(quote)%>' ">
-            <th ><%= quote.name %></th>
+        <tr>
+            <th ><a href="<%=quote_path(quote)%>"><%= quote.name %></a></th>
             <td><%= quote.description %></td>
             <td><%= quote.cost_per_hour %></td>
             <td><%= quote.hours_per_day %></td>

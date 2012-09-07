@@ -24,16 +24,6 @@ class QuotesController < ApplicationController
   end
 
   # GET /quotes/new
-  # GET /quotes/new.json
-  def new
-    @quote = Quote.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @quote }
-    end
-  end
-
   # GET /quotes/1/edit
   def edit
     @quote = Quote.find(params[:id])

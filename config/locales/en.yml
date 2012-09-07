@@ -3,3 +3,22 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail address"
+      quote:
+        name: "Nombre"
+        description: "Descripción"
+        cost_per_hour: "Costo por hora"
+        hours_per_day: "Horas al día"
+    errors:
+      models:
+        quote:
+          attributes:
+            name:
+              blank: "se requiere"
+        user:
+          attributes:
+            email:
+              blank: "is required"

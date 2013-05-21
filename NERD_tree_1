@@ -26,5 +26,6 @@
   config.ru
   Gemfile
   Gemfile.lock
+  NERD_tree_1
   Rakefile
   README.rdoc

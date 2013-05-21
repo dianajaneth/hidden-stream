@@ -1,0 +1,30 @@
+" Press ? for help
+
+.. (up a dir)
+</colin/dev/hidden-stream-8788/
+▾ app/
+  ▸ assets/
+  ▾ controllers/
+      application_controller.rb
+      quotes_controller.rb
+      use_cases_controller.rb
+      users_controller.rb
+  ▸ helpers/
+  ▸ mailers/
+  ▸ models/
+  ▸ views/
+▸ config/
+▸ db/
+▸ doc/
+▸ lib/
+▸ log/
+▸ public/
+▸ script/
+▸ test/
+▸ tmp/
+▸ vendor/
+  config.ru
+  Gemfile
+  Gemfile.lock
+  Rakefile
+  README.rdoc

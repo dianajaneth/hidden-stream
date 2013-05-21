@@ -16,6 +16,11 @@ class QuotesController < ApplicationController
   # GET /quotes/1.json
   def show
     @quote = Quote.find(params[:id])
+    # si no esta creado el params[:q]
+    params[:q] ? params << {:q => {:quote_id => @quote.id}} : params[:q] << {:quote_id => @quote.id}
+
+    @search = UseCase.search(params[:q])
+    @use_cases  = @search.result(distinct: true)
 
     respond_to do |format|
       format.html # show.html.erb

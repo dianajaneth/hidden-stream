@@ -1,3 +1,10 @@
+<%= search_form_for @search, :url => quote_path(@quote) do |f| %>
+  <%= f.label :is_extra %>
+  <%= f.check_box :is_extra_true %>
+
+  <%= f.submit "search" %>
+<% end %>
+
 <div class="well">
     <h1><%= @quote.name %></h1>
 
@@ -22,7 +29,7 @@
             <th></th>
         </tr>
 
-        <% @quote.use_cases.each do |use_case| %>
+        <% @use_cases.each do |use_case| %>
             <tr>
                 <td><%= link_to  use_case.name , quote_use_case_path(use_case.quote.id,use_case.id) %></td>
                 <td><%= use_case.description %></td>

@@ -19,7 +19,7 @@ class QuotesController < ApplicationController
 
     # if params[:q] exists then add a filter of quote_id
     params[:q][:quote_id_eq] = @quote.id if params[:q]
-    search_params = params[:q] ?   params[:q] : {:quote_id_eq => @quote.id}
+    search_params = params[:q] ? params[:q] : {:quote_id_eq => @quote.id}
 
     @search = UseCase.search(search_params)
     @use_cases  = @search.result(distinct: true)

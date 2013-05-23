@@ -6,4 +6,10 @@ class UseCase < ActiveRecord::Base
   validates :programming_time,  :presence => true, :numericality => true
 
   belongs_to :quote
+
+  scope :extra, where('is_extra = ?', true)
+  scope :base, where('is_extra = ?', false)
+  scope :feature, where('is_feature = ?', true)
+  scope :configure, where('is_feature = ?', false)
+
 end

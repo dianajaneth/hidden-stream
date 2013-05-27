@@ -1,4 +1,10 @@
+<% if @quote.use_cases.any? %>
 <%= render 'search_form' if @quote.use_cases.any? %>
+<p>
+	Exportar:
+<%= link_to "CSV", quotes_path(format: "csv") %> 
+</p>
+<% end %>
 
 <div class="well">
     <h1><%= @quote.name %></h1>

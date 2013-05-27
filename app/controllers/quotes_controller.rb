@@ -9,6 +9,7 @@ class QuotesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quotes }
+      format.csv { send_data @quotes.to_csv }
     end
   end
 

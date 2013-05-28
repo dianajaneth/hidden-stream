@@ -2,7 +2,7 @@
 <%= render 'search_form' if @quote.use_cases.any? %>
 <p>
 	Exportar:
-<%= link_to "CSV", quotes_path(format: "csv") %> 
+<%= link_to "CSV", quote_path(@quote, format: "csv") %>
 </p>
 <% end %>
 

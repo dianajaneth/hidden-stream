@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class QuotesController < ApplicationController
     before_filter :authenticate_user!
   # GET /quotes
@@ -9,7 +10,6 @@ class QuotesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quotes }
-      format.csv { send_data @quotes.to_csv }
     end
   end
 
@@ -18,7 +18,7 @@ class QuotesController < ApplicationController
   def show
     @quote = Quote.find(params[:id])
 
-    # if params[:q] exists then add a filter of quote_id
+    #if params[:q] exists then add a filter of quote_id
     params[:q][:quote_id_eq] = @quote.id if params[:q]
     search_params = params[:q] ? params[:q] : {:quote_id_eq => @quote.id}
 
@@ -28,6 +28,17 @@ class QuotesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @quote }
+      format.csv do
+        quotes_csv = CSV.generate(encoding: 'UTF-8') do |csv|
+          #heading
+          csv << ['nombre', 'descripción', 'horas en diseño', 'horas en programación', 'es extra', 'es feature']
+          @use_cases.each do |q|
+            csv << [q.name, q.description, q.design_time, q.programming_time, q.is_extra, q.is_feature]
+          end
+        end
+        filename = "use-cases-#{Time.now}.csv"
+        send_data quotes_csv, disposition: "attachment;filename=#{filename}"
+      end
     end
   end
 

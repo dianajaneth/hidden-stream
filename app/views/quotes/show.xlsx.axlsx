@@ -1,0 +1,26 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "casos de uso") do |sheet|
+
+# define your regular styles
+# styles = wb.styles
+# title = styles.add_style(:sz => 15, :b => true, :u => true)
+# header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+
+# header
+  @use_cases.each do |c|
+    sheet.add_row [c.name]
+  end
+end
+
+wb.add_worksheet(name: "casos de uso 2") do |sheet|
+
+# define your regular styles
+# styles = wb.styles
+# title = styles.add_style(:sz => 15, :b => true, :u => true)
+# header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+
+# header
+  @use_cases.each do |c|
+    sheet.add_row [c.name]
+  end
+end

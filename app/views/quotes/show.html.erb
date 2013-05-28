@@ -4,6 +4,11 @@
 	Exportar:
 <%= link_to "CSV", quote_path(@quote, format: "csv") %>
 </p>
+
+<p>
+	Exportar cliente:
+<%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
+</p>
 <% end %>
 
 <div class="well">

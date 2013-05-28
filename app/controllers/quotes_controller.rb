@@ -26,6 +26,7 @@ class QuotesController < ApplicationController
     @use_cases  = @search.result(distinct: true)
 
     respond_to do |format|
+      format.xlsx
       format.html # show.html.erb
       format.json { render json: @quote }
       format.csv do

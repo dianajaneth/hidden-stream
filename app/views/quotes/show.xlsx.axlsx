@@ -1,26 +1,171 @@
-wb = xlsx_package.workbook
-wb.add_worksheet(name: "casos de uso") do |sheet|
+styles = wb.styles
+
+
+wb.add_worksheet(name: "Casos de Uso") do |sheet|
 
 # define your regular styles
-# styles = wb.styles
-# title = styles.add_style(:sz => 15, :b => true, :u => true)
-# header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+
+ title = styles.add_style(:sz => 15, :b => true, :u => true)
+ header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
 
 # header
+  sheet.add_row ["Casos de Uso"]
+
+  sheet.add_row ["Notas:"]
+
+  sheet.add_row [" "]
+  sheet.add_row [" "]
+
   @use_cases.each do |c|
-    sheet.add_row [c.name]
+    sheet.add_row [c.name, c.description ]
   end
 end
 
-wb.add_worksheet(name: "casos de uso 2") do |sheet|
+wb.add_worksheet(name: "Division") do |sheet|
+
 
 # define your regular styles
-# styles = wb.styles
-# title = styles.add_style(:sz => 15, :b => true, :u => true)
-# header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+ title = styles.add_style(:sz => 15, :b => true, :u => true)
+ header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
 
 # header
-  @use_cases.each do |c|
-    sheet.add_row [c.name]
-  end
+  sheet.add_row ["Division"]
+
+  sheet.add_row ["Notas:"]
+
+  sheet.add_row [" "]
+
+  sheet.add_row [" "]
+
+  sheet.add_row ["Base", "Extra"]
+  
+#  if @use_cases.is_base == true
+    @use_cases.each do |c|
+      sheet.add_row [c.name]
+    end
+#  else if @use_cases.is_feature == true
+    @use_cases.each do |c|
+	sheet.add_row [c.name]
+    end
+#  end
+end
+wb.add_worksheet(name: "Estimacion") do |sheet|
+  
+# define your regular styles
+ title = styles.add_style(:sz => 15, :b => true, :u => true)
+ header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+
+# header
+  
+# header
+  sheet.add_row ["Estimacion"]
+
+  sheet.add_row ["Notas:"]
+
+  sheet.add_row [" "]
+  sheet.add_row [" "]
+
+  sheet.add_row ["Base", "Extra"]
+
+  sheet.add_row ["Funcionalidad", "Duracion"]
+
+  sheet.add_row [ " " , "Diseno", "Programacion"]
+
+#  if @use_cases.is_base = true
+#   x = 0
+#   y = 0 
+    @use_cases.each do |c|
+      sheet.add_row [c.name, c.design_time, c.programming_time ]
+#      x += c.desing_time
+#      y += c.programming_time
+    end
+#    sheet.add_row ["Subtoral", x, y ]
+#  else if @use_cases.is_feature = true
+
+    @use_cases.each do |c|
+        sheet.add_row [c.name,  c.design_time, c.programming_time ]
+    end
+#  end
+
+#  @uses.cases.each do |c|
+ #   sheet.add_row []
+#  end
+
+
+wb.add_worksheet(name: "Estimacion") do |sheet|
+
+# define your regular styles
+ title = styles.add_style(:sz => 15, :b => true, :u => true)
+ header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+
+# header
+
+# header
+  sheet.add_row ["Estimacion"]
+
+  sheet.add_row ["Notas:"]
+
+  sheet.add_row [" "]
+  sheet.add_row [" "]
+
+  sheet.add_row ["Base", "Extra"]
+
+  sheet.add_row ["Funcionalidad", "Duracion"]
+
+  sheet.add_row [ " " , "Diseno", "Programacion"]
+
+#  if @use_cases.is_base = true
+#   x = 0
+#   y = 0
+    @use_cases.each do |c|
+      sheet.add_row [c.name, c.design_time, c.programming_time ]
+#      x += c.desing_time
+#      y += c.programming_time
+    end
+#    sheet.add_row ["Subtoral", x, y ]
+#  else if @use_cases.is_feature = true
+
+    @use_cases.each do |c|
+        sheet.add_row [c.name,  c.design_time, c.programming_time ]
+    end
+#  end
+
+#  @uses.cases.each do |c|
+ #   sheet.add_row []
+#  end
+
+
+wb.add_worksheet(name: "Presupuesto") do |sheet|
+
+# define your regular styles
+ title = styles.add_style(:sz => 15, :b => true, :u => true)
+ header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+
+# header
+
+# header
+  sheet.add_row ["Presupuesto"]
+
+  sheet.add_row ["Notas:"]
+
+  sheet.add_row [" "]
+  sheet.add_row [" "]
+
+  sheet.add_row ["Costo x hora", "$250,00", "MXN (no incluye IVA)"]
+
+  sheet.add_row ["Horas x dia", "7", "(*)"]
+  sheet.add_row [" "]
+
+  sheet.add_row [ " " , "Base"," ", "Extra (+Base)"]
+  sheet.add_row [" "]
+
+
+  sheet.add_row ["Total", "$", "$"]
+
+  sheet.add_row ["Tiempo de entrega (en semanas)", "", ""]
+
+
+  sheet.add_row ["(*) no se está cobrando una hora diaria que se dedica a cuestiones administrativas de Incaztech"]
+
+
 end

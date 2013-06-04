@@ -18,7 +18,7 @@ wb.add_worksheet(name: "Casos de Uso") do |sheet|
  header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
 
 # header
-  sheet.add_row ["Casos de Uso"]
+  sheet.add_row ["Casos de Uso"]  
 
   sheet.add_row ["Notas:"]
 

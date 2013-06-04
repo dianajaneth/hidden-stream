@@ -1,5 +1,14 @@
+wb = xlsx_package.workbook
 styles = wb.styles
-
+#x, y => para base
+#a, b => para extra
+#w, z => para configuracion
+a = 0
+b = 0
+x = 0
+y = 0
+w = 0
+z = 0
 
 wb.add_worksheet(name: "Casos de Uso") do |sheet|
 
@@ -37,17 +46,17 @@ wb.add_worksheet(name: "Division") do |sheet|
 
   sheet.add_row [" "]
 
-  sheet.add_row ["Base", "Extra"]
+  sheet.add_row ["Base"]
   
 #  if @use_cases.is_base == true
-    @use_cases.each do |c|
+    @quote.use_cases.base.each do |c|
       sheet.add_row [c.name]
     end
+  sheet.add_row ["Extra"]
 #  else if @use_cases.is_feature == true
-    @use_cases.each do |c|
+    @quote.use_cases.extra.each do |c|
 	sheet.add_row [c.name]
     end
-#  end
 end
 wb.add_worksheet(name: "Estimacion") do |sheet|
   
@@ -65,75 +74,38 @@ wb.add_worksheet(name: "Estimacion") do |sheet|
   sheet.add_row [" "]
   sheet.add_row [" "]
 
-  sheet.add_row ["Base", "Extra"]
+  sheet.add_row ["Base"]
 
   sheet.add_row ["Funcionalidad", "Duracion"]
 
   sheet.add_row [ " " , "Diseno", "Programacion"]
 
 #  if @use_cases.is_base = true
-#   x = 0
-#   y = 0 
-    @use_cases.each do |c|
+    @quote.use_cases.base.each do |c|
       sheet.add_row [c.name, c.design_time, c.programming_time ]
-#      x += c.desing_time
-#      y += c.programming_time
+      x = x + c.design_time
+      y = y + c.programming_time
     end
-#    sheet.add_row ["Subtoral", x, y ]
-#  else if @use_cases.is_feature = true
+    sheet.add_row ["Subtotal", x, y  ]
+    sheet.add_row ["Total Funcionalidad Base", x+y ]
 
-    @use_cases.each do |c|
-        sheet.add_row [c.name,  c.design_time, c.programming_time ]
-    end
-#  end
-
-#  @uses.cases.each do |c|
- #   sheet.add_row []
-#  end
-
-
-wb.add_worksheet(name: "Estimacion") do |sheet|
-
-# define your regular styles
- title = styles.add_style(:sz => 15, :b => true, :u => true)
- header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
-
-# header
-
-# header
-  sheet.add_row ["Estimacion"]
-
-  sheet.add_row ["Notas:"]
-
-  sheet.add_row [" "]
-  sheet.add_row [" "]
-
-  sheet.add_row ["Base", "Extra"]
+  sheet.add_row ["Extra"]
 
   sheet.add_row ["Funcionalidad", "Duracion"]
 
   sheet.add_row [ " " , "Diseno", "Programacion"]
-
-#  if @use_cases.is_base = true
-#   x = 0
-#   y = 0
-    @use_cases.each do |c|
-      sheet.add_row [c.name, c.design_time, c.programming_time ]
-#      x += c.desing_time
-#      y += c.programming_time
-    end
-#    sheet.add_row ["Subtoral", x, y ]
-#  else if @use_cases.is_feature = true
-
-    @use_cases.each do |c|
+    @quote.use_cases.extra.each do |c|
         sheet.add_row [c.name,  c.design_time, c.programming_time ]
+      x = x + c.design_time
+      y = y + c.programming_time
     end
-#  end
+    sheet.add_row ["Subtotal", a, b  ]
+    sheet.add_row ["Total Funcionalidad Extra(incluyendo base)", x+y+a+b ]
 
-#  @uses.cases.each do |c|
- #   sheet.add_row []
-#  end
 
+
+
+end
 
 wb.add_worksheet(name: "Presupuesto") do |sheet|
 
@@ -151,16 +123,16 @@ wb.add_worksheet(name: "Presupuesto") do |sheet|
   sheet.add_row [" "]
   sheet.add_row [" "]
 
-  sheet.add_row ["Costo x hora", "$250,00", "MXN (no incluye IVA)"]
+  sheet.add_row ["Costo x hora", @quote.cost_per_hour , "MXN (no incluye IVA)"]
 
-  sheet.add_row ["Horas x dia", "7", "(*)"]
+  sheet.add_row ["Horas x dia", @quote.hours_per_day , "(*)"]
   sheet.add_row [" "]
 
   sheet.add_row [ " " , "Base"," ", "Extra (+Base)"]
   sheet.add_row [" "]
 
 
-  sheet.add_row ["Total", "$", "$"]
+  sheet.add_row ["Total", @quote.total_cost*(x+y+w) , @quote.total_cost*(x+y+a+b+z)]
 
   sheet.add_row ["Tiempo de entrega (en semanas)", "", ""]
 

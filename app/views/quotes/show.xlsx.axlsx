@@ -48,12 +48,10 @@ wb.add_worksheet(name: "Division") do |sheet|
 
   sheet.add_row ["Base"]
   
-#  if @use_cases.is_base == true
     @quote.use_cases.base.each do |c|
       sheet.add_row [c.name]
     end
   sheet.add_row ["Extra"]
-#  else if @use_cases.is_feature == true
     @quote.use_cases.extra.each do |c|
 	sheet.add_row [c.name]
     end
@@ -64,7 +62,6 @@ wb.add_worksheet(name: "Estimacion") do |sheet|
  title = styles.add_style(:sz => 15, :b => true, :u => true)
  header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
 
-# header
   
 # header
   sheet.add_row ["Estimacion"]
@@ -80,7 +77,6 @@ wb.add_worksheet(name: "Estimacion") do |sheet|
 
   sheet.add_row [ " " , "Diseno", "Programacion"]
 
-#  if @use_cases.is_base = true
     @quote.use_cases.base.each do |c|
       sheet.add_row [c.name, c.design_time, c.programming_time ]
       x = x + c.design_time
@@ -96,8 +92,8 @@ wb.add_worksheet(name: "Estimacion") do |sheet|
   sheet.add_row [ " " , "Diseno", "Programacion"]
     @quote.use_cases.extra.each do |c|
         sheet.add_row [c.name,  c.design_time, c.programming_time ]
-      x = x + c.design_time
-      y = y + c.programming_time
+      a = a + c.design_time
+      b = b + c.programming_time
     end
     sheet.add_row ["Subtotal", a, b  ]
     sheet.add_row ["Total Funcionalidad Extra(incluyendo base)", x+y+a+b ]
@@ -132,9 +128,11 @@ wb.add_worksheet(name: "Presupuesto") do |sheet|
   sheet.add_row [" "]
 
 
-  sheet.add_row ["Total", @quote.total_cost*(x+y+w) , @quote.total_cost*(x+y+a+b+z)]
+  tb =  @quote.cost_per_hour*@quote.hours_per_day*(x+y+w) 
+  te =  @quote.total_cost
+  sheet.add_row ["Total", tb , te]
 
-  sheet.add_row ["Tiempo de entrega (en semanas)", "", ""]
+  sheet.add_row ["Tiempo de entrega (en semanas)", ((x+y+w)/@quote.hours_per_day)/5  , ((x+y+w+a+b+z)/@quote.hours_per_day)/5  ]
 
 
   sheet.add_row ["(*) no se está cobrando una hora diaria que se dedica a cuestiones administrativas de Incaztech"]

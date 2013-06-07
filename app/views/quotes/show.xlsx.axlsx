@@ -14,15 +14,19 @@ wb.add_worksheet(name: "Casos de Uso") do |sheet|
 
 # define your regular styles
 
- title = styles.add_style(:sz => 15, :b => true, :u => true)
- header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+ title = styles.add_style(:sz => 18, :b => true, :u => true)
+ header = styles.add_style(:sz => 14, :b => true)
+ black = styles.add_style(:sz => 14, :b => true )
 
 # header
   sheet.add_row ["Casos de Uso"]  
-
+  sheet.merge_cells("A1:D1")
+  sheet["A1"].style = title
   sheet.add_row ["Notas:"]
+#  sheet["A2"].style = black
 
   sheet.add_row [" "]
+  sheet.merge_cells("A4:D4")
   sheet.add_row [" "]
 
   @use_cases.each do |c|
@@ -34,24 +38,32 @@ wb.add_worksheet(name: "Division") do |sheet|
 
 
 # define your regular styles
- title = styles.add_style(:sz => 15, :b => true, :u => true)
- header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+ title = styles.add_style(:sz => 18, :b => true, :u => true)
+ header = styles.add_style(:sz => 14, :b => true)
+ black = styles.add_style(:sz => 14, :b => true )
 
 # header
   sheet.add_row ["Division"]
 
+  sheet.merge_cells("A1:D1")
+  sheet["A1"].style = title
   sheet.add_row ["Notas:"]
+#  sheet["A3"].style = black
 
   sheet.add_row [" "]
-
   sheet.add_row [" "]
 
   sheet.add_row ["Base"]
+  sheet["A5"].style = header
   
     @quote.use_cases.base.each do |c|
       sheet.add_row [c.name]
     end
+  sheet.add_row [" "]
+  sheet.add_row [" "]
+  
   sheet.add_row ["Extra"]
+  sheet["A5"].style = header
     @quote.use_cases.extra.each do |c|
 	sheet.add_row [c.name]
     end
@@ -59,31 +71,46 @@ end
 wb.add_worksheet(name: "Estimacion") do |sheet|
   
 # define your regular styles
- title = styles.add_style(:sz => 15, :b => true, :u => true)
- header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
+ title = styles.add_style(:sz => 18, :b => true, :u => true)
+ header = styles.add_style(:sz => 14, :b => true)
+ black = styles.add_style(:sz => 14, :b => true )
 
   
 # header
   sheet.add_row ["Estimacion"]
 
+  sheet.merge_cells("A1:D1")
+  sheet["A1"].style = title
   sheet.add_row ["Notas:"]
+#  sheet["A3"].style = black
 
   sheet.add_row [" "]
   sheet.add_row [" "]
 
   sheet.add_row ["Base"]
+  sheet["A5"].style = header
 
   sheet.add_row ["Funcionalidad", "Duracion"]
+  sheet["A6"].style = black
+  sheet.merge_cells("B6:D6")
+  sheet["B6"].style = black
 
   sheet.add_row [ " " , "Diseno", "Programacion"]
+#  sheet["A7"].style = black
+  sheet["B7"].style = black
+  sheet["C7"].style = black
 
     @quote.use_cases.base.each do |c|
       sheet.add_row [c.name, c.design_time, c.programming_time ]
       x = x + c.design_time
       y = y + c.programming_time
     end
-    sheet.add_row ["Subtotal", x, y  ]
-    sheet.add_row ["Total Funcionalidad Base", x+y ]
+  sheet.add_row ["Subtotal", x, y  ]
+
+  sheet.add_row ["Total Funcionalidad Base", x+y ]
+
+  sheet.add_row [" "]
+  sheet.add_row [" "]
 
   sheet.add_row ["Extra"]
 
@@ -99,43 +126,79 @@ wb.add_worksheet(name: "Estimacion") do |sheet|
     sheet.add_row ["Total Funcionalidad Extra(incluyendo base)", x+y+a+b ]
 
 
+  sheet.add_row [" "]
+  sheet.add_row [" "]
 
+  sheet.add_row ["Configuracion"]
+
+  sheet.add_row ["Actividades", "Duracion"]
+
+    @quote.use_cases.configure.each do |c|
+        sheet.add_row [c.name,  c.design_time+c.programming_time ]
+      w = w + c.design_time
+      z = z + c.programming_time
+    end
+    
+    sheet.add_row ["Subtotal", w+z  ]
+
+
+  sheet.add_row [" "]
+  sheet.add_row ["Total de dias hombre (Incluyen configuracion) "]
+  sheet.add_row [" ","Base",x+y+w+z ]
+  sheet.add_row [" ","Extra (+Base)",x+y+w+z+a+b ]
 
 end
 
 wb.add_worksheet(name: "Presupuesto") do |sheet|
 
 # define your regular styles
- title = styles.add_style(:sz => 15, :b => true, :u => true)
- header = styles.add_style(:bg_color => '00', :fg_color => 'FF', :b => true)
-
+ title = styles.add_style(:sz => 18, :b => true, :u => true)
+ header = styles.add_style(:sz => 14, :b => true)
+ black = styles.add_style(:sz => 15, :b => true )
+ mini = styles.add_style(:sz => 8, :i => true)
 # header
 
 # header
   sheet.add_row ["Presupuesto"]
 
-  sheet.add_row ["Notas:"]
+  sheet.merge_cells("A1:D1")
+  sheet["A1"].style = title
 
   sheet.add_row [" "]
   sheet.add_row [" "]
 
   sheet.add_row ["Costo x hora", @quote.cost_per_hour , "MXN (no incluye IVA)"]
+  sheet["A4"].style = black
+  sheet["B4"].style = black
 
   sheet.add_row ["Horas x dia", @quote.hours_per_day , "(*)"]
+  sheet["A5"].style = black
+  sheet["B5"].style = black
+
   sheet.add_row [" "]
 
   sheet.add_row [ " " , "Base"," ", "Extra (+Base)"]
   sheet.add_row [" "]
+  sheet["B7"].style = header
+  sheet["D7"].style = header
 
 
   tb =  @quote.cost_per_hour*@quote.hours_per_day*(x+y+w) 
   te =  @quote.total_cost
-  sheet.add_row ["Total", tb , te]
+  sheet.add_row ["Total", tb ," ", te]
+  sheet["A9"].style = header
+ 
+  tsb = ((x+y+w)/@quote.hours_per_day)/5  
+  tse = ((x+y+w+a+b+z)/@quote.hours_per_day)/5 
 
-  sheet.add_row ["Tiempo de entrega (en semanas)", ((x+y+w)/@quote.hours_per_day)/5  , ((x+y+w+a+b+z)/@quote.hours_per_day)/5  ]
+  sheet.add_row ["Tiempo de entrega (en semanas)", tsb," " ,tse]
+  sheet["A10"].style = header
 
+  sheet.add_row [" "]
+  sheet.add_row [" "]
 
   sheet.add_row ["(*) no se está cobrando una hora diaria que se dedica a cuestiones administrativas de Incaztech"]
-
+  sheet.merge_cells("A13:D13")
+  sheet["A13"].style = mini
 
 end

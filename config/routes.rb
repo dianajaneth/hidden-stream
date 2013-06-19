@@ -1,6 +1,4 @@
 Cotiplus::Application.routes.draw do
-  devise_for :admins
-
   devise_for :users
 
   resources :users, :controller => {:registrations => "users/registrations"}

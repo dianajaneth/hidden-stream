@@ -20,12 +20,10 @@
     <% end %>
     <br />
     <br />
-    <% if current_user.admin?  %>
       <%= link_to 'New Use case', new_quote_use_case_path(@quote.id) %>
       <p>
         <!-- <%= link_to 'Notify Client'  %> -->
       </p>
-    <% end %>
 
 
     <table class="table table-hover table-bordered table-condensed">

@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'ransack'
 gem 'axlsx'
 gem 'axlsx_rails'
+gem 'cancan'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

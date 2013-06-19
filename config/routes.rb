@@ -3,7 +3,7 @@ Cotiplus::Application.routes.draw do
 
   devise_for :users
 
-  resources :users
+  resources :users, :controller => {:registrations => "users/registrations"}
   #resources :use_cases
 
   resources :quotes do

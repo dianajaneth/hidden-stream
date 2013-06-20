@@ -15,12 +15,11 @@
     <h1><%= @quote.name %></h1>
 
     <p class="lead"> <%= @quote.description %> </p>
-    <%= link_to new_quote_use_case_path(@quote.id) ,:class => "btn btn-success", :style => "float:right;", "href"=>"#newUseCaseModal", "role"=>"button", "data-toggle"=>"modal" do %>
+    <%= link_to new_quote_use_case_path(@quote.id) ,:class => "btn btn-success", :style => "float:right;", "role"=>"button", "data-toggle"=>"modal" do %>
         <i class="icon-plus icon-white"></i> Nuevo Caso de Uso
     <% end %>
     <br />
     <br />
-      <%= link_to 'New Use case', new_quote_use_case_path(@quote.id) %>
       <p>
         <!-- <%= link_to 'Notify Client'  %> -->
       </p>

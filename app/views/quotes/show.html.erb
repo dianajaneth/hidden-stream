@@ -1,12 +1,13 @@
 <% if @quote.use_cases.any? %>
-  <%= render 'search_form'  %>
+<div class= "row">
+    <%= render 'search_form'  %>
 
-<div class="span3 offset2">
-	  Exportar:
-  <%= link_to "CSV", quote_path(@quote, format: "csv") %>
-	  Exportar cliente:
-  <%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
+  <div class="span1 offset2">
+    <label> Exportar: </label>    <%= link_to "CSV", quote_path(@quote, format: "csv") %>
+	  <label> Exportar cliente: </label>    <%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
+  </div>
 </div>
+
 
 <% end %>
 

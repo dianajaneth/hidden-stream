@@ -1,6 +1,5 @@
 <%= search_form_for @search, :url => quote_path(@quote) do |f| %>
- <div class="row">
-   <div class="span1 offset1">
+   <div class="offset1">
   <% if @quote.use_cases.extra.any? %>
     <%= f.label "Extra" %>
     <%= f.check_box :is_extra_true %>
@@ -25,7 +24,6 @@
     <%= f.submit "search" %>
 
    </div>
- </div>
 
 <% end %>
 

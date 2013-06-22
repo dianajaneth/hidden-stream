@@ -1,24 +1,42 @@
 <%= search_form_for @search, :url => quote_path(@quote) do |f| %>
  <% if @quote.use_cases.extra.any? %>
-  <%= f.label "Extra" %>
+ <div class="row">
+   <div class="span1">
+   <%= f.label "Extra" %>
   <%= f.check_box :is_extra_true %>
+
+   </div>
+ </div>
+
  <% end %>
 
 <% if @quote.use_cases.base.any? %>
+ <div class="row">
+   <div class="span1">
   <%= f.label "Base" %>
   <%= f.check_box :is_extra_false %>
+   </div>
+ </div>
 <% end %>
 
 
 <% if @quote.use_cases.feature.any? %>
 
+ <div class="row">
+   <div class="span1">
   <%= f.label "Feature" %>
   <%= f.check_box :is_feature_true %>
+   </div>
+ </div>
 <% end %>
 <% if @quote.use_cases.configure.any? %>
+ <div class="row">
+   <div class="span1">
 
   <%= f.label "Configure" %>
   <%= f.check_box :is_feature_false %>
+   </div>
+ </div>
 <% end %>
 
   <%= f.submit "search" %>

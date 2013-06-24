@@ -1,5 +1,5 @@
 <%= search_form_for @search, :url => quote_path(@quote) do |f| %>
-   <h3 class="offset1">
+
 
     <sub>Importancia.</sub>
      <% if @quote.use_cases.extra.any? %>
@@ -12,7 +12,7 @@
     <%= f.check_box :is_extra_false %>
   <% end %>
 
-
+   </br>
     <sub>Tipo de caso de uso.</sub>
   <% if @quote.use_cases.feature.any? %>
     <%= f.label "Feature" %>
@@ -26,7 +26,7 @@
 
     <%= f.submit "search" %>
 
-   </h3>
+
 
 <% end %>
 

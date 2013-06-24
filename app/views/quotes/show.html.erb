@@ -35,8 +35,8 @@
             <th>Description</th>
             <th>Design time</th>
             <th>Programming time</th>
-            <th>Is extra</th>
-            <th>Is feature</th>
+            <th>Importancia</th>
+            <th>Tipo</th>
             <th></th>
             <th></th>
         </tr>
@@ -47,8 +47,20 @@
                 <td><%= use_case.description %></td>
                 <td><%= use_case.design_time %></td>
                 <td><%= use_case.programming_time %></td>
-                <td><%= use_case.is_extra %></td>
-                <td><%= use_case.is_feature %></td>
+                <td>
+                  <% if use_case.is_extra == true %>
+                    <%= "Extra" %>
+                  <% else %>
+                    <%= "Base"  %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if use_case.is_feature == true %>
+                     <%= "Funcionalidad"  %>
+                   <% else %>
+                     <%= "Configuracion"  %>
+                   <% end %>
+                </td>
                 <td><%= link_to  edit_quote_use_case_path(use_case.quote.id,use_case.id) do %><i class="icon-edit"></i><% end %></td>
                 <td><%= link_to 'Destroy', quote_use_case_path(use_case.quote.id,use_case.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>

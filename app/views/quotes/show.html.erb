@@ -1,14 +1,14 @@
 <% if @quote.use_cases.any? %>
  <div class= "row">
-   <div class="span1">
+
    <%= render 'search_form'  %>
 
-  <h3 class="offset2">
+  <h4 class="offset2">
     <label> Exportar: </label>    <%= link_to "CSV", quote_path(@quote, format: "csv") %>
 	  <label> Exportar cliente: </label>    <%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
-  </h3>
+  </h4>
 
-   </div>
+
 
 </div>
 
@@ -58,7 +58,7 @@
                   <% if use_case.is_feature == true %>
                      <%= "Funcionalidad"  %>
                    <% else %>
-                     <%= "Configuracion"  %>
+                     <%= "Configuración"  %>
                    <% end %>
                 </td>
                 <td><%= link_to  edit_quote_use_case_path(use_case.quote.id,use_case.id) do %><i class="icon-edit"></i><% end %></td>

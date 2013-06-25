@@ -34,12 +34,16 @@ class QuotesController < ApplicationController
       format.csv do
         quotes_csv = CSV.generate(encoding: 'UTF-8') do |csv|
           #heading
-          csv << ['nombre', 'descripción', 'horas en diseño', 'horas en programación', 'es extra', 'es feature']
+          csv << ['Nombre', 'Descripción', 'Horas en diseño', 'Horas en programación', 'Importancia', 'Tipo']
           @use_cases.each do |q|
-            csv << [q.name, q.description, q.design_time, q.programming_time, q.is_extra, q.is_feature]
+
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Extra", "Funcionalidad"]  if q.is_extra == true and q.is_feature == true
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Base", "Configuracion"]  if q.is_extra == false and q.is_feature == false
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Extra", "Configuracion"]  if q.is_extra == true and q.is_feature == false
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Base", "Funcionalidad"]  if q.is_extra == false and q.is_feature == true
           end
         end
-        filename = "use-cases-#{Time.now}.csv"
+        filename = "#{@quote.name}-Casos de uso.csv"
         send_data quotes_csv, disposition: "attachment;filename=#{filename}"
       end
     end

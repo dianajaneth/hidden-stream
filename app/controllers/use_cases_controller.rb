@@ -3,7 +3,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases.json
   def index
     @quote = Quote.find(params[:quote_id])
-    @use_cases = @quote.use_cases
+#    @use_cases = @quote.use_cases
 
     respond_to do |format|
       format.html # index.html.erb

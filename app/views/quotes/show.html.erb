@@ -3,10 +3,9 @@
 
    <%= render 'search_form'  %>
 
-  <h4 class="offset2">
+
     <label> Exportar: </label>    <%= link_to "CSV", quote_path(@quote, format: "csv") %>
 	  <label> Exportar cliente: </label>    <%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
-  </h4>
 
 
 
@@ -24,10 +23,10 @@
     <% end %>
     <br />
     <br />
-    <p>
+<!--!    <p>
       <button class="btn btn-success" onclick="">Notificar Cliente</button>
       </p>
-
+      -->
 
     <table class="table table-hover table-bordered table-condensed">
         <tr>

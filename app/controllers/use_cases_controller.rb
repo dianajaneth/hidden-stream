@@ -28,6 +28,7 @@ class UseCasesController < ApplicationController
     @use_case = UseCase.new
     @quote = Quote.find(params[:quote_id])
 
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @use_case }

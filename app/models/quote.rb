@@ -11,7 +11,7 @@ class Quote < ActiveRecord::Base
   has_and_belongs_to_many :roles
 
   after_initialize :default_values
-  after_create :set_quotes_users_roles
+#  after_create :set_quotes_users_roles
 
   private
     def default_values
@@ -20,9 +20,9 @@ class Quote < ActiveRecord::Base
       self.status ||= "nueva"
     end
 
-    def set_quotes_users_roles
-      owner = Role.find_by_name('owner')
-      QuoteUserRole.create(quote_id: id, user_id: user_id, role_id: owner.id)
-    end
+ #   def set_quotes_users_roles
+ #     owner = Role.find_by_name('owner')
+ #     QuoteUserRole.create(quote_id: id, user_id: user_id, role_id: owner.id)
+ #   end
 
 end

@@ -5,7 +5,7 @@
 
 
     <label> Exportar: </label>    <%= link_to "CSV", quote_path(@quote, format: "csv") %>
-	  <label> Exportar cliente: </label>    <%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
+  <label> Exportar cliente: </label>    <%= link_to "Excel", quote_path(@quote, format: "xlsx") %>
 
 
 
@@ -18,7 +18,7 @@
     <h1><%= @quote.name %></h1>
 
     <p class="lead"> <%= @quote.description %> </p>
-    <%= link_to new_quote_use_case_path(@quote.id) ,:class => "btn btn-success", :style => "float:right;", "role"=>"button", "data-toggle"=>"modal" do %>
+    <%= link_to new_quote_use_case_path(@quote.id,@use_case) ,:class => "btn btn-success", :style => "float:right;", "role"=>"button", "data-toggle"=>"modal" do %>
         <i class="icon-plus icon-white"></i> Nuevo Caso de Uso
     <% end %>
     <br />

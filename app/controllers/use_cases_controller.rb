@@ -28,6 +28,7 @@ class UseCasesController < ApplicationController
     @use_case = UseCase.new
     @quote = Quote.find(params[:quote_id])
 
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @use_case }
@@ -37,6 +38,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases/1/edit
   def edit
     @use_case = UseCase.find(params[:id])
+    @use_case.quote = Quote.find(params[:quote_id])
   end
 
   # POST /use_cases

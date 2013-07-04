@@ -1,7 +1,7 @@
 #encoding: UTF-8
 class QuotesController < ApplicationController
   before_filter :authenticate_user!
-  authorize_resource
+#  authorize_resource
 
   # GET /quotes
   # GET /quotes.json

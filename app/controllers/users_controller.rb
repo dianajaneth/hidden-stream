@@ -83,9 +83,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def is_owner_of(quote)
-
-
-  end
+#  def is_owner_of(quote)
+ # end
 
 end

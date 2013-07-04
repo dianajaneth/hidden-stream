@@ -7,8 +7,8 @@ class Quote < ActiveRecord::Base
   validates :hours_per_day,  :presence => true, :numericality => true
 
   has_many :use_cases
-  has_and_belongs_to_many :users
-  has_and_belongs_to_many :roles
+#  has_and_belongs_to_many :users
+#  has_and_belongs_to_many :roles
 
   after_initialize :default_values
 #  after_create :set_quotes_users_roles

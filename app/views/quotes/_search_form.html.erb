@@ -1,38 +1,17 @@
 <%= search_form_for @search, :url => quote_path(@quote) do |f| %>
 
+    <nav id="sidebar" class="navbar-static-top" >
+      <div  class="span2 nav-header"><h5>Importancia </h5></div>
+      <div  class="span1 nav-list"><% if @quote.use_cases.extra.any? %><%= f.label "Extra"%> <%= f.check_box :is_extra_true %> <% end %></div>
+      <div  class="span1 nav-list"><% if @quote.use_cases.base.any? %> <%= f.label "Base"%> <%=  f.check_box :is_extra_false %> <% end %></div>
+      <div  class="span3 nav-header"><h5>Tipo de caso de uso</h5></div>
+      <div  class="span1 nav-list"><% if @quote.use_cases.feature.any? %><%= f.label "Feature"%><%= f.check_box :is_feature_true %> <% end %></div>
+      <div  class="span1 nav-list"><% if @quote.use_cases.configure.any? %><%= f.label "Configure"%><%= f.check_box :is_feature_false %> <% end %></div>
+      <div class="span2 nav-list"> <%= f.submit "search" %></div>
 
-    <sub>Importancia.</sub>
-    <div id="Importancia">
-     <% if @quote.use_cases.extra.any? %>
-            <%= f.label "Extra"%>
-            <%= f.check_box :is_extra_true %>
-  <% end %>
-
-  <% if @quote.use_cases.base.any? %>
-         <%= f.label "Base"%>
-         <%=  f.check_box :is_extra_false %>
-  <% end %>
-
-    </div>
-
-   </br>
-    <sub>Tipo de caso de uso.</sub>
-    <div id="Tipo">
-  <% if @quote.use_cases.feature.any? %>
-         <%= f.label "Feature"%>
-         <%= f.check_box :is_feature_true %>
-  <% end %>
-
-  <% if @quote.use_cases.configure.any? %>
-    <%= f.label "Configure"%>
-    <%= f.check_box :is_feature_false %>
-  <% end %>
-
-    </div>
-
-    <%= f.submit "search" %>
-
-
+      </br>
+      </br>
+    </nav>
 
 <% end %>
 

@@ -2,6 +2,7 @@
 
 
     <sub>Importancia.</sub>
+    <div id="Importancia">
      <% if @quote.use_cases.extra.any? %>
             <%= f.label "Extra"%>
             <%= f.check_box :is_extra_true %>
@@ -12,8 +13,11 @@
          <%=  f.check_box :is_extra_false %>
   <% end %>
 
+    </div>
+
    </br>
     <sub>Tipo de caso de uso.</sub>
+    <div id="Tipo">
   <% if @quote.use_cases.feature.any? %>
          <%= f.label "Feature"%>
          <%= f.check_box :is_feature_true %>
@@ -23,6 +27,8 @@
     <%= f.label "Configure"%>
     <%= f.check_box :is_feature_false %>
   <% end %>
+
+    </div>
 
     <%= f.submit "search" %>
 

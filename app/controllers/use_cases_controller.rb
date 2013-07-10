@@ -55,15 +55,7 @@ class UseCasesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @use_case.errors, status: :unprocessable_entity }
       end
-
-      dt = @quote.use_cases.sum(:design_time);
-      pt = @quote.use_cases.sum(:programming_time);
-      dc = dt * @quote.cost_per_hour
-      pc = pt * @quote.cost_per_hour
-      tc = dc + pc
-      @quote.total_hours = dt + pt
-      @quote.total_cost = tc
-      @quote.save
+      realizarCostos
     end
   end
 
@@ -95,12 +87,18 @@ class UseCasesController < ApplicationController
       format.html { redirect_to @quote }
       format.json { head :no_content }
     end
-    dt = @quote.use_cases.sum(:design_time);
+    realizarCostos
+  end
+
+  def realizarCostos
+      dt = @quote.use_cases.sum(:design_time);
       pt = @quote.use_cases.sum(:programming_time);
-      dc = dt * @quote.cost_per_hour
-      pc = pt * @quote.cost_per_hour
-      tc = dc + pc
-      @quote.total_cost = tc
+#      dc = dt * @quote.cost_per_hour
+#      pc = pt * @quote.cost_per_hour
+#      tc = dc + pc
+      @quote.total_hours = dt + pt
+      @quote.total_cost = (dt+pt) * @quote.cost_per_hour
       @quote.save
   end
+
 end

@@ -44,7 +44,7 @@
 
         <% @use_cases.each do |use_case| %>
             <tr>
-                <td><%= link_to  use_case.name , quote_use_case_path(use_case.quote.id,use_case.id) %></td>
+                <td><%= link_to  use_case.name , quote_use_case_path(use_case.quote,use_case) %></td>
                 <td><%= use_case.description %></td>
                 <td><%= use_case.design_time %></td>
                 <td><%= use_case.programming_time %></td>
@@ -62,7 +62,7 @@
                      <%= "Configuración"  %>
                    <% end %>
                 </td>
-                <td><%= link_to  edit_quote_use_case_path(use_case.quote.id,use_case.id) do %><i class="icon-edit"></i><% end %></td>
+                <td><%= link_to  edit_quote_use_case_path(use_case.quote,use_case) do %><i class="icon-edit"></i><% end %></td>
                 <td><%= link_to 'Destroy', quote_use_case_path(use_case.quote.id,use_case.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
         <% end %>

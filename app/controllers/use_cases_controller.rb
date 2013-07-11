@@ -73,6 +73,7 @@ class UseCasesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @use_case.errors, status: :unprocessable_entity }
       end
+      realizarCostos
     end
   end
 

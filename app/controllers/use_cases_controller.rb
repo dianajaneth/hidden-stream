@@ -38,7 +38,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases/1/edit
   def edit
     @use_case = UseCase.find(params[:id])
-    @use_case.quote = Quote.find(params[:quote_id])
+    @quote = Quote.find(params[:quote_id])
   end
 
   # POST /use_cases
@@ -75,7 +75,7 @@ class UseCasesController < ApplicationController
 
     respond_to do |format|
       if @use_case.update_attributes(params[:use_case])
-        format.html { redirect_to @quote, notice: 'Use case was successfully updated.' }
+        format.html { redirect_to @quote , notice: 'Use case was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

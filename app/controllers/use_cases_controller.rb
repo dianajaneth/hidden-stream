@@ -27,6 +27,7 @@ class UseCasesController < ApplicationController
   def new
     @use_case = UseCase.new
     @quote = Quote.find(params[:quote_id])
+    #@usert = {'General' => 1, 'Administador'=> 2, 'Visitante'=>3 }
 
 
     respond_to do |format|
@@ -46,6 +47,7 @@ class UseCasesController < ApplicationController
   def create
       @quote = Quote.find(params[:quote_id])
     @use_case = @quote.use_cases.build(params[:use_case])
+
 
     respond_to do |format|
       if @use_case.save

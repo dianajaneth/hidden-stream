@@ -1,5 +1,5 @@
 class UseCase < ActiveRecord::Base
-  attr_accessible :description, :design_time, :is_extra, :is_feature, :name, :programming_time
+  attr_accessible :description, :design_time, :is_extra, :is_feature, :name, :programming_time, :userType
   validates :name,  :presence => true
   validates :description, :presence => true, :length => { :maximum => 500 }
   validates :design_time,  :presence => true, :numericality => true

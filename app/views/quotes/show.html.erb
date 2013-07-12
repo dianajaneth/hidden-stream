@@ -38,6 +38,7 @@
             <th>Programming time</th>
             <th>Importancia</th>
             <th>Tipo</th>
+            <th>Usuario</th>
             <th></th>
             <th></th>
         </tr>
@@ -61,7 +62,8 @@
                    <% else %>
                      <%= "Configuración"  %>
                    <% end %>
-                </td>
+                 </td>
+                 <td><%= use_case.userType  %></td>
                 <td><%= link_to  edit_quote_use_case_path(use_case.quote,use_case) do %><i class="icon-edit"></i><% end %></td>
                 <td><%= link_to 'Destroy', quote_use_case_path(use_case.quote.id,use_case.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>

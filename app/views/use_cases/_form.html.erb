@@ -34,7 +34,18 @@
   <div class="field">
       <%= f.label :is_feature %>
       <%= check_box("use_case", "is_feature") %>
-  </div>
+    </div>
+    <div class="field">
+      <%= f.label :userType  %>
+      <input list="user_types" class="field"  name="user_type"  />
+      <datalist id="user_types" class="field">
+        <option value="General">
+        <option value="Visitante">
+        <option value="Administrador">
+      </datalist>
+    </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

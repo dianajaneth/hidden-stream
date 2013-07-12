@@ -19,7 +19,7 @@ wb.add_worksheet(name: "Casos de Uso") do |sheet|
  black = styles.add_style(:sz => 14, :b => true )
 
 # header
-  sheet.add_row ["Casos de Uso"]  
+  sheet.add_row ["Casos de Uso"]
   sheet.merge_cells("A1:D1")
   sheet["A1"].style = title
   sheet.add_row ["Notas:"]
@@ -30,7 +30,7 @@ wb.add_worksheet(name: "Casos de Uso") do |sheet|
   sheet.add_row [" "]
 
   @use_cases.each do |c|
-    sheet.add_row [c.name, c.description ]
+    sheet.add_row [c.name, c.description, c.userType ]
   end
 end
 
@@ -55,13 +55,13 @@ wb.add_worksheet(name: "Division") do |sheet|
 
   sheet.add_row ["Base"]
   sheet["A5"].style = header
-  
+
     @quote.use_cases.base.each do |c|
       sheet.add_row [c.name]
     end
   sheet.add_row [" "]
   sheet.add_row [" "]
-  
+
   sheet.add_row ["Extra"]
   sheet["A5"].style = header
     @quote.use_cases.extra.each do |c|
@@ -69,13 +69,13 @@ wb.add_worksheet(name: "Division") do |sheet|
     end
 end
 wb.add_worksheet(name: "Estimacion") do |sheet|
-  
+
 # define your regular styles
  title = styles.add_style(:sz => 18, :b => true, :u => true)
  header = styles.add_style(:sz => 14, :b => true)
  black = styles.add_style(:sz => 14, :b => true )
 
-  
+
 # header
   sheet.add_row ["Estimacion"]
 
@@ -138,7 +138,7 @@ wb.add_worksheet(name: "Estimacion") do |sheet|
       w = w + c.design_time
       z = z + c.programming_time
     end
-    
+
     sheet.add_row ["Subtotal", w+z  ]
 
 
@@ -183,13 +183,13 @@ wb.add_worksheet(name: "Presupuesto") do |sheet|
   sheet["D7"].style = header
 
 
-  tb =  @quote.cost_per_hour*@quote.hours_per_day*(x+y+w) 
+  tb =  @quote.cost_per_hour*@quote.hours_per_day*(x+y+w)
   te =  @quote.total_cost
   sheet.add_row ["Total", tb ," ", te]
   sheet["A9"].style = header
- 
-  tsb = ((x+y+w)/@quote.hours_per_day)/5  
-  tse = ((x+y+w+a+b+z)/@quote.hours_per_day)/5 
+
+  tsb = ((x+y+w)/@quote.hours_per_day)/5
+  tse = ((x+y+w+a+b+z)/@quote.hours_per_day)/5
 
   sheet.add_row ["Tiempo de entrega (en semanas)", tsb," " ,tse]
   sheet["A10"].style = header

@@ -34,13 +34,13 @@ class QuotesController < ApplicationController
       format.csv do
         quotes_csv = CSV.generate(encoding: 'UTF-8') do |csv|
           #heading
-          csv << ['Nombre', 'Descripción', 'Horas en diseño', 'Horas en programación', 'Importancia', 'Tipo']
+          csv << ['Nombre', 'Descripción', 'Horas en diseño', 'Horas en programación', 'Importancia', 'Tipo', 'Tipo de Usuario']
           @use_cases.each do |q|
 
-            csv << [q.name, q.description, q.design_time, q.programming_time, "Extra", "Funcionalidad"]  if q.is_extra == true and q.is_feature == true
-            csv << [q.name, q.description, q.design_time, q.programming_time, "Base", "Configuracion"]  if q.is_extra == false and q.is_feature == false
-            csv << [q.name, q.description, q.design_time, q.programming_time, "Extra", "Configuracion"]  if q.is_extra == true and q.is_feature == false
-            csv << [q.name, q.description, q.design_time, q.programming_time, "Base", "Funcionalidad"]  if q.is_extra == false and q.is_feature == true
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Extra", "Funcionalidad", q.userType]  if q.is_extra == true and q.is_feature == true
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Base", "Configuracion", q.userType]  if q.is_extra == false and q.is_feature == false
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Extra", "Configuracion", q.userType]  if q.is_extra == true and q.is_feature == false
+            csv << [q.name, q.description, q.design_time, q.programming_time, "Base", "Funcionalidad", q.userType]  if q.is_extra == false and q.is_feature == true
           end
         end
         filename = "#{@quote.name}-Casos de uso.csv"
